@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a2f7c7ee2b241b7b95bda41e00db9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 0.2
 --- !u!1 &330052309
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11127908c79934d90a1355c7edc1a903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxWaveEffectDist: 0
 --- !u!1 &1105269273
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11127908c79934d90a1355c7edc1a903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxWaveEffectDist: 0
 --- !u!23 &1105269275
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DotEntity : MonoBehaviour {
 
+	public float colorInfluence = 0.1f;
+
 	private float repel;
 	private Vector3 color;
 	private string emot;
@@ -30,7 +32,10 @@ public class DotEntity : MonoBehaviour {
 
 	public void applyColorMix(float dist, Wave otherWave){
 		Wave thisWave = GetComponent<Wave>();
-		
+		Material thisMat = thisWave.getMaterial();
+		Material otherMat = otherWave.getMaterial();
+		float colorLerp = (-dist/otherWave.getMaxWaveEffectDist()+1) * otherMat.GetFloat("_Frequency");
+		thisMat.color = Color.Lerp(thisMat.color, otherMat.color, colorLerp);
 	}
 
 	public void checkCollision(){
