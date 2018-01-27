@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
 
         if (frc.magnitude < 0.01 && vel.magnitude < 0.001) { vel.x = 0; vel.y = 0; }
 
-        Debug.Log("Velocity: " + vel.magnitude);
+        // Debug.Log("Velocity: " + vel.magnitude);
     }
 
     private void calculateFriction()
