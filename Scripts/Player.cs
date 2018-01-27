@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 
     public float speed;     // the speed scalar
     private Vector2 vel;    // velocity vector
-    private Vector2 acl;    // acceleration vector
+    // private Vector2 acl;    // acceleration vector
     private Vector2 net;    // net force vector
     private Vector2 frc;    // actor force vector
     private Vector2 fri;    // friction vector
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		vel = Vector2.zero;
-        acl = Vector2.zero;
+        // acl = Vector2.zero;
         net = Vector2.zero;
         frc = Vector2.zero;
         fri = Vector2.zero;
