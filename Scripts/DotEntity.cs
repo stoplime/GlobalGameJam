@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DotEntity : MonoBehaviour {
 
-	public float colorInfluence = 0.1f;
+	public float colorInfluence = 0.2f;
 
 	private float repel;
 	private Vector3 color;
@@ -34,8 +34,11 @@ public class DotEntity : MonoBehaviour {
 		Wave thisWave = GetComponentsInChildren<Wave>()[0];
 		Material thisMat = thisWave.getMaterial();
 		Material otherMat = otherWave.getMaterial();
-		float colorLerp = (-dist/otherWave.getMaxWaveEffectDist()+1) * otherMat.GetFloat("_Frequency");
+		Renderer rend = GetComponent<Renderer>();
+		Material thisDotMat = rend.material;
+		float colorLerp = (-dist/otherWave.getMaxWaveEffectDist()+1) * otherMat.GetFloat("_Frequency") * colorInfluence;
 		thisMat.color = Color.Lerp(thisMat.color, otherMat.color, colorLerp);
+		thisDotMat.color = Color.Lerp(thisDotMat.color, otherMat.color, colorLerp);
 		print("color mixing");
 	}
 
