@@ -46,7 +46,7 @@ Shader "Custom/WaveRipple"
 			float _Frequency;
 			float _Thickness;
 			float _Offset;
-			float _MaxRadius
+			float _MaxRadius;
 
             v2f vert (appdata_base v)
             {
