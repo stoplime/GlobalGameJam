@@ -37,7 +37,7 @@ public class DotEntity : MonoBehaviour {
 		for (int i = 0; i < GameManager.dots.Length; i++)
 		{
 			float dist = Help.getDist2D(transform.position, GameManager.dots[i].transform.position);
-			if (dist < GameManager.dots[i].GetComponent<Wave>().MaxWaveEffectDist)
+			if (dist < GameManager.dots[i].GetComponent<Wave>().getMaxWaveEffectDist())
 			{
 				// apply collision based on distance
 				applyColorMix(dist, GameManager.dots[i].GetComponent<Wave>());
