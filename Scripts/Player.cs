@@ -46,8 +46,10 @@ public class Player : MonoBehaviour {
 
     private void calculateFriction()
     {
-        fri.x = FRICTION_CONSTANT * (vel.x/speed);
-        fri.y = FRICTION_CONSTANT * (vel.y/speed);
+        fri.x = FORCE * (vel.x/speed);
+        fri.y = FORCE * (vel.y/speed);
+
+        fri = Vector2.ClampMagnitude(fri, FORCE);
     }
 
     private void calculateNetForce()
@@ -85,5 +87,7 @@ public class Player : MonoBehaviour {
             frc.y -= FORCE;
 			//vel.y = -Time.deltaTime * speed;
 		}
+
+        frc = Vector2.ClampMagnitude(frc, FORCE);
 	}
 }
