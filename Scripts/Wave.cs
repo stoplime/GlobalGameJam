@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Wave : MonoBehaviour {
-	public Shader shader;
-	public Color color;
 	public Material startMaterial;
 	private Renderer rend;
 	// Use this for initialization
