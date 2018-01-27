@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
+    public Text text;
+
     public const float FRICTION_CONSTANT = 2F;
     public const float FORCE = 0.25F;
 
+    public float ultimate;  // ultimate timer
     public float speed;     // the speed scalar
     private Vector2 vel;    // velocity vector
     // private Vector2 acl;    // acceleration vector
@@ -15,6 +19,9 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        text.text = "test";
+        ultimate = 0F;
+
 		vel = Vector2.zero;
         // acl = Vector2.zero;
         net = Vector2.zero;
@@ -27,12 +34,26 @@ public class Player : MonoBehaviour {
 		if (!GameManager.IsPaused)
 		{
 			Controls();
+
             calculateFriction();
             calculateNetForce();
             calculateVelocity();
+
+            ultimateTick();
+
             transform.Translate(vel);
 		}
 	}
+
+    private void ultimateTick()
+    {
+        if (ultimate > 10F) ultimate = 10F;
+        if (ultimate < 10F)
+        {
+            ultimate += Time.deltaTime;
+            text.text = ((int)ultimate).ToString();
+        }
+    }
 
     private void calculateVelocity()
     {
