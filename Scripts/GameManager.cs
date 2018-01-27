@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManage : MonoBehaviour {
+public static class GameManage {
+	public static bool IsPaused = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+	public static GameObject player;
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public static Dictionary<string, KeyCode> keyProfile = new Dictionary<string, KeyCode>()
+	{
+		{"forward", KeyCode.W},
+		{"backward", KeyCode.S},
+		{"left", KeyCode.A},
+		{"right", KeyCode.D},
+		{"fire", KeyCode.Mouse0}
+	};
+
 }
