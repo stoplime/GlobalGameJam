@@ -38,6 +38,10 @@ public class Player : MonoBehaviour {
     {
         vel.x += Time.deltaTime * net.x;
         vel.y += Time.deltaTime * net.y;
+
+        if (frc.magnitude < 0.01 && vel.magnitude < 0.001) { vel.x = 0; vel.y = 0; }
+
+        Debug.Log("Velocity: " + vel.magnitude);
     }
 
     private void calculateFriction()
@@ -50,39 +54,36 @@ public class Player : MonoBehaviour {
     {
         net.x = frc.x - fri.x;
         net.y = frc.y - fri.y;
+
+        net = Vector2.ClampMagnitude(net, FORCE);
     }
 
 	public void Controls() {
+        frc.x = 0;
+        frc.y = 0;
+
 		if (Input.GetKey(GameManage.keyProfile["right"]))
 		{
-            frc.x = FORCE;
+            frc.x += FORCE;
 			// vel.x = Time.deltaTime * speed;
 		}
-		else if (Input.GetKey(GameManage.keyProfile["left"]))
+
+        if (Input.GetKey(GameManage.keyProfile["left"]))
 		{
-            frc.x = -FORCE;
+            frc.x -= FORCE;
 			// vel.x = -Time.deltaTime * speed;
-		}
-		else
-		{
-            frc.x = 0;
-			// vel.x = 0;
 		}
 
 		if (Input.GetKey(GameManage.keyProfile["forward"]))
 		{
-            frc.y = FORCE;
+            frc.y += FORCE;
 			//vel.y = Time.deltaTime * speed;
 		}
-		else if (Input.GetKey(GameManage.keyProfile["backward"]))
+
+        if (Input.GetKey(GameManage.keyProfile["backward"]))
 		{
-            frc.y = -FORCE;
+            frc.y -= FORCE;
 			//vel.y = -Time.deltaTime * speed;
-		}
-		else
-		{
-            frc.y = 0;
-			// vel.y = 0;
 		}
 	}
 }
