@@ -9,6 +9,8 @@ public class Wave : MonoBehaviour {
 	public float thickness;
 	public float offset;
 
+	public float MaxWaveEffectDist;
+
 	// Use this for initialization
 	void Start () {
 		Renderer rend = GetComponent<Renderer>();
