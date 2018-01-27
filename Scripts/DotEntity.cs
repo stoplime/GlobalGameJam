@@ -31,21 +31,25 @@ public class DotEntity : MonoBehaviour {
 	}
 
 	public void applyColorMix(float dist, Wave otherWave){
-		Wave thisWave = GetComponent<Wave>();
+		Wave thisWave = GetComponentsInChildren<Wave>()[0];
 		Material thisMat = thisWave.getMaterial();
 		Material otherMat = otherWave.getMaterial();
 		float colorLerp = (-dist/otherWave.getMaxWaveEffectDist()+1) * otherMat.GetFloat("_Frequency");
 		thisMat.color = Color.Lerp(thisMat.color, otherMat.color, colorLerp);
+		print("color mixing");
 	}
 
 	public void checkCollision(){
 		for (int i = 0; i < GameManager.dots.Length; i++)
 		{
 			float dist = Help.getDist2D(transform.position, GameManager.dots[i].transform.position);
-			if (dist < GameManager.dots[i].GetComponent<Wave>().getMaxWaveEffectDist())
+			Wave wave = GameManager.dots[i].GetComponentsInChildren<Wave>()[0];
+			// print(GameManager.dots[i].transform.position);
+			// print(wave.getMaxWaveEffectDist());
+			if (wave != null && dist < wave.getMaxWaveEffectDist())
 			{
 				// apply collision based on distance
-				applyColorMix(dist, GameManager.dots[i].GetComponent<Wave>());
+				applyColorMix(dist, wave);
 			}
 		}
 	}
@@ -56,7 +60,7 @@ public class DotEntity : MonoBehaviour {
 	/// </summary>
 	void Start()
 	{
-		
+		GameManager.dots = GameObject.FindGameObjectsWithTag("dots");
 	}
 
 	/// <summary>
@@ -64,6 +68,6 @@ public class DotEntity : MonoBehaviour {
 	/// </summary>
 	void Update()
 	{
-		
+		checkCollision();
 	}
 }
