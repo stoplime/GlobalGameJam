@@ -6,9 +6,10 @@ public class Wave : MonoBehaviour {
 	public Shader shader;
 	public Color color;
 	public Material startMaterial;
-	private Renderer rend = GetComponent<Renderer>();
+	private Renderer rend;
 	// Use this for initialization
 	void Start () {
+		rend = GetComponent<Renderer>();
         rend.material = new Material(startMaterial);
 	}
 	
@@ -21,7 +22,7 @@ public class Wave : MonoBehaviour {
 		return rend.material;
 	}
 
-	public Material setMaterial(Material mat) {
+	public void setMaterial(Material mat) {
 		rend.material = mat;
 	}
 }
