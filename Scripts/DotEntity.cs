@@ -34,9 +34,9 @@ public class DotEntity : MonoBehaviour {
 	}
 
 	public void checkCollision(){
-		for (int i = 0; i < GameManager.dots.Count; i++)
+		for (int i = 0; i < GameManager.dots.Length; i++)
 		{
-			float dist = Help.getDist2D(trasform.position, GameManager.dots[i].trasform.position);
+			float dist = Help.getDist2D(transform.position, GameManager.dots[i].transform.position);
 			if (dist < GameManager.dots[i].GetComponent<Wave>().MaxWaveEffectDist)
 			{
 				// apply collision based on distance
