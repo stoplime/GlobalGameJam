@@ -8,6 +8,7 @@ Shader "Custom/WaveRipple"
 		_Thickness ("Thickness", Range (0, 1)) = 0.125
 		_Offset ("Emptiness", Range (-1, 1)) = 0
 		_MaxRadius ("Max Radius", Range (0, 1)) = 0.5
+		_InnerRadius ("Inner Radius", Range (0, 1)) = 0
 	}
 	SubShader
 	{
@@ -47,6 +48,7 @@ Shader "Custom/WaveRipple"
 			float _Thickness;
 			float _Offset;
 			float _MaxRadius;
+			float _InnerRadius;
 
             v2f vert (appdata_base v)
             {
@@ -67,10 +69,11 @@ Shader "Custom/WaveRipple"
 				float xs = x * x;
 				float ys = y * y;
 				float ci = sqrt(xs + ys);
-				clip((1 - ci) - (1 - _MaxRadius));
+				clip((1 - _InnerRadius) - (1 - ci));
+				clip((1 - ci) - (1 - _MaxRadius * 0.5));
 				float timeFrac = frac(_Time.a / (1 / _Frequency));
-				clip(sin((2 * 3.141) / _Thickness * (ci - timeFrac)) - _Offset);
-				float4 color = { i.color, (1 - 2 * ci) };
+				clip(sin((2 * 3.1415926) / _Thickness * (ci - timeFrac)) - _Offset);
+				float4 color = { i.color, (_MaxRadius * 0.5 - ci + _InnerRadius) };
 				float4 tex = tex2D(_Texture, i.uv);
 				tex.a = color.a;
                 return color;
