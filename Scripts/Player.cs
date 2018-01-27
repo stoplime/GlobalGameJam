@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!GameManage.IsPaused)
+		if (!GameManager.IsPaused)
 		{
 			Controls();
             calculateFriction();
@@ -62,25 +62,25 @@ public class Player : MonoBehaviour {
         frc.x = 0;
         frc.y = 0;
 
-		if (Input.GetKey(GameManage.keyProfile["right"]))
+		if (Input.GetKey(GameManager.keyProfile["right"]))
 		{
             frc.x += FORCE;
 			// vel.x = Time.deltaTime * speed;
 		}
 
-        if (Input.GetKey(GameManage.keyProfile["left"]))
+        if (Input.GetKey(GameManager.keyProfile["left"]))
 		{
             frc.x -= FORCE;
 			// vel.x = -Time.deltaTime * speed;
 		}
 
-		if (Input.GetKey(GameManage.keyProfile["forward"]))
+		if (Input.GetKey(GameManager.keyProfile["forward"]))
 		{
             frc.y += FORCE;
 			//vel.y = Time.deltaTime * speed;
 		}
 
-        if (Input.GetKey(GameManage.keyProfile["backward"]))
+        if (Input.GetKey(GameManager.keyProfile["backward"]))
 		{
             frc.y -= FORCE;
 			//vel.y = -Time.deltaTime * speed;

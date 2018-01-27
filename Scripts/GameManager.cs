@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameManage {
+public static class GameManager {
 	public static bool IsPaused = false;
 
 	public static GameObject player;
 
-	public static List<GameObject> dots = new List<GameObject>();
-	private static GameObject[] findDots = GameObject.FindGameObjectsWithTag("dots");
-	for (int i = 0; i < findDots.Length; i++)
-	{
-		dots.Add(findDots[i]);
-	}
+	public static GameObject[] dots = GameObject.FindGameObjectsWithTag("dots");
+	// private static findDots = GameObject.FindGameObjectsWithTag("dots");
+	// for (int i = 0; i < findDots.Length; i++)
+	// {
+	// 	dots.Add(findDots[i]);
+	// }
 	
 	public static Dictionary<string, KeyCode> keyProfile = new Dictionary<string, KeyCode>()
 	{
