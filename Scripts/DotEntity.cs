@@ -27,4 +27,38 @@ public class DotEntity : MonoBehaviour {
 		//	if(distance<tooFar from otherDot){ return dot.rgb , return otherDot.rgb
 		//	dot.transition*(distance-tooFar) , otherDot.transision*(distance-tooFar)}
 	}
+
+	public void applyColorMix(float dist, Wave otherWave){
+		Wave thisWave = GetComponent<Wave>();
+		
+	}
+
+	public void checkCollision(){
+		for (int i = 0; i < GameManager.dots.Count; i++)
+		{
+			float dist = Help.getDist2D(trasform.position, GameManager.dots[i].trasform.position);
+			if (dist < GameManager.dots[i].GetComponent<Wave>().MaxWaveEffectDist)
+			{
+				// apply collision based on distance
+				applyColorMix(dist, GameManager.dots[i].GetComponent<Wave>());
+			}
+		}
+	}
+
+	/// <summary>
+	/// Start is called on the frame when a script is enabled just before
+	/// any of the Update methods is called the first time.
+	/// </summary>
+	void Start()
+	{
+		
+	}
+
+	/// <summary>
+	/// Update is called every frame, if the MonoBehaviour is enabled.
+	/// </summary>
+	void Update()
+	{
+		
+	}
 }
