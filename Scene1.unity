@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 1105269277}
   - component: {fileID: 1105269276}
   - component: {fileID: 1105269275}
+  - component: {fileID: 1105269274}
   m_Layer: 0
   m_Name: Wave
   m_TagString: Untagged
@@ -407,6 +408,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1105269274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1105269273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11127908c79934d90a1355c7edc1a903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 73abc85510a1443be83b60430ae13321, type: 3}
+  color: {r: 1, g: 0, b: 0, a: 0}
+  frequency: 0.1
+  thickness: 0.1
+  offset: 0.2
 --- !u!23 &1105269275
 MeshRenderer:
   m_ObjectHideFlags: 0
