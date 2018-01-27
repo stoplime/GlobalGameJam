@@ -1,8 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Wave : MonoBehaviour {
+	public float getMaxWaveEffectDist(){
+		return transform.localScale[0] * getMaterial().GetFloat("_MaxRadius");
+	}
+
 	private Renderer rend;
 	// Use this for initialization
 	void Start () {

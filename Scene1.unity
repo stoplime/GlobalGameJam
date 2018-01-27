@@ -448,7 +448,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 871be82d88785439186bddad8b0636fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -498,11 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11127908c79934d90a1355c7edc1a903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 73abc85510a1443be83b60430ae13321, type: 3}
-  color: {r: 0.034482475, g: 0, b: 1, a: 0}
-  frequency: 0.05
-  thickness: 0.1
-  offset: 0.2
   MaxWaveEffectDist: 0
 --- !u!1 &1105269273
 GameObject:
@@ -535,11 +530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11127908c79934d90a1355c7edc1a903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 73abc85510a1443be83b60430ae13321, type: 3}
-  color: {r: 1, g: 0, b: 0, a: 0}
-  frequency: 0.05
-  thickness: 0.1
-  offset: 0.2
   MaxWaveEffectDist: 0
 --- !u!23 &1105269275
 MeshRenderer:
