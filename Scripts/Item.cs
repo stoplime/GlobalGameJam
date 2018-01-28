@@ -15,6 +15,7 @@ public class Item : MonoBehaviour
     void Start()
     {
         rotationSpeed = 60.0F;
+        GameManager.droppedItems.Add(gameObject);
     }
 
     void CheckDistance()
