@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
         //print(GameManager.player);
         float distance = Help.getDist2D(transform.position, GameManager.player.transform.position) * 2;
 
-        rotationSpeed = -_A * Help.getTanH(distance/_B - _C) + 61F + _A;
+        //rotationSpeed = -_A * Help.getTanH(distance/_B - _C) + 61F + _A;
     }
 
     void Update () {
