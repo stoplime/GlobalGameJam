@@ -17,17 +17,17 @@ public class Player : MonoBehaviour {
     private Vector2 frc;    // actor force vector
     private Vector2 fri;    // friction vector
 
-	public Collider coll;
-    void OnTriggerEnter(Collider other) {
-        if (other.attachedRigidbody)
-            other.attachedRigidbody.useGravity = false;
+	// public Collider coll;
+    // void OnTriggerEnter(Collider other) {
+    //     if (other.attachedRigidbody)
+    //         other.attachedRigidbody.useGravity = false;
         
-    }
+    // }
 
 	// Use this for initialization
 	void Start () {
-		coll = GetComponent<Collider>();
-        coll.isTrigger = true;
+		// coll = GetComponent<Collider>();
+        // coll.isTrigger = true;
         text.text = "test";
         ultimate = 0F;
 
