@@ -2,7 +2,8 @@
 {
 	Properties
 	{
-		_Density ("Density", Range(2, 1000)) = 30
+		_Color ("Color", Color) = (0.87, 0.87, 0.87, 1)
+		_Density ("Density", Range(2, 5000)) = 30
 		_Thickness ("Thickness", Range(0, 1)) = 0.01
 	}
 	SubShader
@@ -30,7 +31,8 @@
 				float4 vertex : SV_POSITION;
 			};
 
-			float _Density;
+			fixed4 _Color;
+			float _Density; 
 			float _Thickness;
 			
 			v2f vert (appdata v)
@@ -46,8 +48,7 @@
 				float2 c = i.uv;
 				clip(frac(c.x) - _Thickness);
 				clip(frac(c.y) - _Thickness);
-				float val = 0.13;
-				return fixed4(val, val, val, 1);
+				return _Color;
 			}
 			ENDCG
 		}
