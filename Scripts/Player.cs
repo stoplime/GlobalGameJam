@@ -125,6 +125,22 @@ public class Player : MonoBehaviour {
 			//vel.y = -Time.deltaTime * speed;
 		}
 
+        if (Input.GetKeyDown(GameManager.keyProfile["fire"]))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.tag == "dots")
+                {
+                    if (GameManager.pickedUpItems.Count > 0)
+                    {
+                        
+                    }
+                }
+            }
+        }
+
         frc = Vector2.ClampMagnitude(frc, FORCE);
 	}
 
