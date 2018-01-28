@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DotEntity : MonoBehaviour {
+    public bool isPlayer = false;
 
+    public const float FORCE = 0.25F;
+    public const float speed = 0.2F;
 	public float colorInfluence = 0.2f;
 
 	public bool isBeacon = false;
 
+    private Vector2 velocity;
+
+    private bool isMoving;
 	private float timer;
 	private float nextTime;
 
@@ -19,6 +25,8 @@ public class DotEntity : MonoBehaviour {
 	private float noise;
 
     private Vector2 force;
+    private Vector2 friction;
+    private Vector2 net;
 
 	void getRepelStrength(){
 
@@ -74,12 +82,17 @@ public class DotEntity : MonoBehaviour {
 	void Start()
 	{
         timer = 0.0F;
+        isMoving = false;
+        nextTime = Random.value;
+        velocity = Vector2.zero;
         force = Vector2.zero;
 		GameObject[] dotsArray = GameObject.FindGameObjectsWithTag("dots");
 		for (int i = 0; i < dotsArray.Length; i++)
 		{
 			GameManager.dots.Add(dotsArray[i]);
 		}
+        friction = Vector2.zero;
+        net = Vector2.zero;
         force = Random.insideUnitCircle;
 	}
 
@@ -88,13 +101,43 @@ public class DotEntity : MonoBehaviour {
 	/// </summary>
 	void Update()
 	{
-		checkCollision();
-        timer += Time.deltaTime;
-
-        if (timer >= nextTime)
+        if (!GameManager.IsPaused)
         {
-            force = Random.insideUnitCircle * 2;
-            force = Vector2.ClampMagnitude(force, .25F);
+            checkCollision();
+
+            if (!isPlayer)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= nextTime)
+                {
+                    if (!isMoving)
+                    {
+                        force = Random.insideUnitCircle * 2;
+                        force = Vector2.ClampMagnitude(force, FORCE);
+
+                        isMoving = true;
+
+                        nextTime = Random.value * 0.5F;
+
+                        timer = 0;
+                    }
+                    else
+                    {
+                        force = Vector2.zero;
+                        isMoving = false;
+                        nextTime = Random.value * 5;
+
+                        timer = 0;
+                    }
+                }
+
+                calculateFriction();
+                calculateNetForce();
+                calculateVelocity();
+
+                transform.Translate(velocity);
+            }
         }
 	}
 	
@@ -110,5 +153,30 @@ public class DotEntity : MonoBehaviour {
 				}
 			}
 		}
+
+    public void calculateFriction()
+    {
+        friction.x = FORCE * (velocity.x / speed);
+        friction.y = FORCE * (velocity.y / speed);
+
+        friction = Vector2.ClampMagnitude(friction, FORCE);
+    }
+
+    public void calculateNetForce()
+    {
+        net.x = force.x - friction.x;
+        net.y = force.y - friction.y;
+
+        net = Vector2.ClampMagnitude(net, FORCE);
+    }
+
+    public void calculateVelocity()
+    {
+        velocity.x += Time.deltaTime * net.x;
+        velocity.y += Time.deltaTime * net.y;
+
+        if (friction.magnitude < 0.01 && velocity.magnitude < 0.001) { velocity.x = 0; velocity.y = 0; }
+
+        // Debug.Log("Velocity: " + vel.magnitude);
     }
 }
