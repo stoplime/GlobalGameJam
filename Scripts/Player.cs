@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
+    public bool isPlayerTwo;
     public float pickupDist;
     public Text text;
 
@@ -30,9 +31,9 @@ public class Player : MonoBehaviour {
         // coll = GetComponent<Collider>();
         // coll.isTrigger = true;
         
-        GameManager.player = gameObject;
+        if (!isPlayerTwo) GameManager.player = gameObject;
 
-        text.text = "test";
+        if (!isPlayerTwo) text.text = "test";
         ultimate = 0F;
 
 		vel = Vector2.zero;
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour {
         else if (ultimate < 10F)
         {
             ultimate += Time.deltaTime;
-            text.text = ((int)ultimate).ToString();
+            if (!isPlayerTwo) text.text = ((int)ultimate).ToString();
         }
 
         else if (Input.GetKeyUp(GameManager.keyProfile["ultimate"]))
@@ -104,43 +105,71 @@ public class Player : MonoBehaviour {
         frc.x = 0;
         frc.y = 0;
 
-		if (Input.GetKey(GameManager.keyProfile["right"]))
-		{
-            frc.x += FORCE;
-			// vel.x = Time.deltaTime * speed;
-		}
-
-        if (Input.GetKey(GameManager.keyProfile["left"]))
-		{
-            frc.x -= FORCE;
-			// vel.x = -Time.deltaTime * speed;
-		}
-
-		if (Input.GetKey(GameManager.keyProfile["forward"]))
-		{
-            frc.y += FORCE;
-			//vel.y = Time.deltaTime * speed;
-		}
-
-        if (Input.GetKey(GameManager.keyProfile["backward"]))
-		{
-            frc.y -= FORCE;
-			//vel.y = -Time.deltaTime * speed;
-		}
-
-        if (Input.GetKeyDown(GameManager.keyProfile["fire"]))
+        if (!isPlayerTwo)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if(Physics.Raycast(ray, out hit))
+            if (Input.GetKey(GameManager.keyProfile["right"]))
             {
-                if (hit.transform.tag == "dots")
+                frc.x += FORCE;
+                // vel.x = Time.deltaTime * speed;
+            }
+
+            if (Input.GetKey(GameManager.keyProfile["left"]))
+            {
+                frc.x -= FORCE;
+                // vel.x = -Time.deltaTime * speed;
+            }
+
+            if (Input.GetKey(GameManager.keyProfile["forward"]))
+            {
+                frc.y += FORCE;
+                //vel.y = Time.deltaTime * speed;
+            }
+
+            if (Input.GetKey(GameManager.keyProfile["backward"]))
+            {
+                frc.y -= FORCE;
+                //vel.y = -Time.deltaTime * speed;
+            }
+
+            if (Input.GetKeyDown(GameManager.keyProfile["fire"]))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
                 {
-                    if (GameManager.pickedUpItems.Count > 0)
+                    if (hit.transform.tag == "dots")
                     {
-                        
+                        if (GameManager.pickedUpItems.Count > 0)
+                        {
+
+                        }
                     }
                 }
+            }
+        } else
+        {
+            if (Input.GetKey(GameManager.keyProfile["right_2"]))
+            {
+                frc.x += FORCE;
+                // vel.x = Time.deltaTime * speed;
+            }
+
+            if (Input.GetKey(GameManager.keyProfile["left_2"]))
+            {
+                frc.x -= FORCE;
+                // vel.x = -Time.deltaTime * speed;
+            }
+
+            if (Input.GetKey(GameManager.keyProfile["forward_2"]))
+            {
+                frc.y += FORCE;
+                //vel.y = Time.deltaTime * speed;
+            }
+
+            if (Input.GetKey(GameManager.keyProfile["backward_2"]))
+            {
+                frc.y -= FORCE;
+                //vel.y = -Time.deltaTime * speed;
             }
         }
 
