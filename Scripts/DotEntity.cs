@@ -6,9 +6,10 @@ public class DotEntity : MonoBehaviour {
 
 	public float colorInfluence = 0.2f;
 
-    private float timer;
+	public bool isBeacon = false;
 
-    private float nextTime;
+	private float timer;
+	private float nextTime;
 
 	private float repel;
 	private Vector3 color;
@@ -58,7 +59,10 @@ public class DotEntity : MonoBehaviour {
 			if (wave != null && dist < wave.getMaxWaveEffectDist())
 			{
 				// apply collision based on distance
-				applyColorMix(dist, wave);
+				if (!isBeacon)
+				{
+					applyColorMix(dist, wave);
+				}
 			}
 		}
 	}
