@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DotEntity : MonoBehaviour {
     public bool isPlayer = false;
+    public bool isAngry;
 
     public const float FORCE = 0.25F;
     public const float speed = 0.2F;
@@ -139,7 +140,7 @@ public class DotEntity : MonoBehaviour {
 
                         isMoving = true;
 
-                        nextTime = Random.value * 0.5F;
+                        nextTime = Random.value * (!isAngry ? 0.3F : 0.5F);
 
                         timer = 0;
                     }
@@ -147,7 +148,7 @@ public class DotEntity : MonoBehaviour {
                     {
                         force = Vector2.zero;
                         isMoving = false;
-                        nextTime = Random.value * 5;
+                        nextTime = Random.value * (!isAngry ? 5 : 1);
 
                         timer = 0;
                     }
