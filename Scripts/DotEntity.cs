@@ -50,7 +50,7 @@ public class DotEntity : MonoBehaviour {
 	}
 
 	public void checkCollision(){
-		for (int i = 0; i < GameManager.dots.Length; i++)
+		for (int i = 0; i < GameManager.dots.Count; i++)
 		{
 			float dist = Help.getDist2D(transform.position, GameManager.dots[i].transform.position);
 			Wave wave = GameManager.dots[i].GetComponentsInChildren<Wave>()[0];
@@ -75,7 +75,11 @@ public class DotEntity : MonoBehaviour {
 	{
         timer = 0.0F;
         force = Vector2.zero;
-		GameManager.dots = GameObject.FindGameObjectsWithTag("dots");
+		GameObject[] dotsArray = GameObject.FindGameObjectsWithTag("dots");
+		for (int i = 0; i < dotsArray.Length; i++)
+		{
+			GameManager.dots.Add(dotsArray[i]);
+		}
         force = Random.insideUnitCircle;
 	}
 
@@ -93,4 +97,18 @@ public class DotEntity : MonoBehaviour {
             force = Vector2.ClampMagnitude(force, .25F);
         }
 	}
+	
+	void OnDestroy() {
+		if (GameManager.dots != null)
+		{
+			for (int i = 0; i < GameManager.dots.Count; i++)
+			{
+				if (GameManager.dots[i] == this)
+				{
+					GameManager.dots.RemoveAt(i);
+					break;
+				}
+			}
+		}
+    }
 }
