@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
 	void Start () {
 		// coll = GetComponent<Collider>();
         // coll.isTrigger = true;
-        text.text = "test";
+        // text.text = "test";
         ultimate = 0F;
 
 		vel = Vector2.zero;
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour {
         else if (ultimate < 10F)
         {
             ultimate += Time.deltaTime;
-            text.text = ((int)ultimate).ToString();
+            // text.text = ((int)ultimate).ToString();
         }
 
         else if (Input.GetKeyUp(GameManager.keyProfile["ultimate"]))
