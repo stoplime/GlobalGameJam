@@ -8,6 +8,9 @@ public class DotEntity : MonoBehaviour {
 
 	public bool isBeacon = false;
 
+	private float timer;
+	private float nextTime;
+
 	private float repel;
 	private Vector3 color;
 	private string emot;
