@@ -57,10 +57,16 @@ public class Player : MonoBehaviour {
     private void ultimateTick()
     {
         if (ultimate > 10F) ultimate = 10F;
-        if (ultimate < 10F)
+
+        else if (ultimate < 10F)
         {
             ultimate += Time.deltaTime;
             text.text = ((int)ultimate).ToString();
+        }
+
+        else if (Input.GetKeyUp(GameManager.keyProfile["ultimate"]))
+        {
+            ultimate = 0F;
         }
     }
 
