@@ -6,6 +6,8 @@ public class DotEntity : MonoBehaviour {
 
 	public float colorInfluence = 0.2f;
 
+	public bool isBeacon = false;
+
 	private float repel;
 	private Vector3 color;
 	private string emot;
@@ -52,7 +54,10 @@ public class DotEntity : MonoBehaviour {
 			if (wave != null && dist < wave.getMaxWaveEffectDist())
 			{
 				// apply collision based on distance
-				applyColorMix(dist, wave);
+				if (!isBeacon)
+				{
+					applyColorMix(dist, wave);
+				}
 			}
 		}
 	}
