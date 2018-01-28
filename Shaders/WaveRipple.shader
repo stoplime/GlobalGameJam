@@ -1,4 +1,4 @@
-﻿Shader "Custom/WaveRipple"
+Shader "Custom/WaveRipple"
 {
 	Properties
 	{
@@ -11,7 +11,7 @@
 		_InnerRadius ("Inner Radius", Range (0, 1)) = 0
 		_CutoffXL ("Horizontal Cutoff (Left)", Range(0, 1)) = 0
 		_CutoffXR ("Horizontal Cutoff (Right)", Range(0, 1)) = 1
-		_Direction("Cutoff Direction", Range(0, 2)) = 0
+		//_Direction("Cutoff Direction", Range(0, 2)) = 0
 	}
 	SubShader
 	{
@@ -54,7 +54,7 @@
 			float _InnerRadius;
 			float _CutoffXL;
 			float _CutoffXR;
-			float _Direction;
+			//float _Direction;
 
             v2f vert (appdata_base v)
             {
