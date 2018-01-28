@@ -1,4 +1,4 @@
-Shader "Custom/WaveRipple"
+﻿Shader "Custom/WaveRipple"
 {
 	Properties
 	{
@@ -9,6 +9,9 @@ Shader "Custom/WaveRipple"
 		_Offset ("Emptiness", Range (-1, 1)) = 0
 		_MaxRadius ("Max Radius", Range (0, 1)) = 0.5
 		_InnerRadius ("Inner Radius", Range (0, 1)) = 0
+		_CutoffXL ("Horizontal Cutoff (Left)", Range(0, 1)) = 0
+		_CutoffXR ("Horizontal Cutoff (Right)", Range(0, 1)) = 1
+		_Direction("Cutoff Direction", Range(0, 2)) = 0
 	}
 	SubShader
 	{
@@ -49,6 +52,9 @@ Shader "Custom/WaveRipple"
 			float _Offset;
 			float _MaxRadius;
 			float _InnerRadius;
+			float _CutoffXL;
+			float _CutoffXR;
+			float _Direction;
 
             v2f vert (appdata_base v)
             {
@@ -69,6 +75,8 @@ Shader "Custom/WaveRipple"
 				float xs = x * x;
 				float ys = y * y;
 				float ci = sqrt(xs + ys);
+				clip(c.x - _CutoffXL);
+				clip(_CutoffXR - c.x);
 				clip((1 - _InnerRadius) - (1 - ci));
 				clip((1 - ci) - (1 - _MaxRadius * 0.5));
 				float timeFrac = frac(_Time.a / (1 / _Frequency));
