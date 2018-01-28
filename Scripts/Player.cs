@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
+    public float pickupDist;
     public Text text;
 
     public const float FRICTION_CONSTANT = 2F;
@@ -126,4 +127,20 @@ public class Player : MonoBehaviour {
 
         frc = Vector2.ClampMagnitude(frc, FORCE);
 	}
+
+    public void CheckPickUp(){
+        for (int i = 0; i < GameManager.droppedItems.Count; i++)
+        {
+            if (GameManager.droppedItems[i] != null)
+            {
+                if (Help.getDist2D(transform.position, GameManager.droppedItems[i].transform.position) < pickupDist)
+                {
+                    GameManager.pickedUpItems.Add(GameManager.droppedItems[i]);
+                    Item item = GameManager.droppedItems[i].GetComponent<Item>();
+                    item.pickedUp = true;
+                    GameManager.droppedItems.RemoveAt(i);
+                }
+            }
+        }
+    }
 }

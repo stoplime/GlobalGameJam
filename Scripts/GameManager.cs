@@ -8,11 +8,10 @@ public static class GameManager {
 	public static GameObject player;
 
 	public static List<GameObject> dots = new List<GameObject>();
-	// private static findDots = GameObject.FindGameObjectsWithTag("dots");
-	// for (int i = 0; i < findDots.Length; i++)
-	// {
-	// 	dots.Add(findDots[i]);
-	// }
+
+	public static List<GameObject> droppedItems = new List<GameObject>();
+
+	public static List<GameObject> pickedUpItems = new List<GameObject>();
 	
 	public static Dictionary<string, KeyCode> keyProfile = new Dictionary<string, KeyCode>()
 	{
