@@ -20,7 +20,8 @@ public static class GameManager {
 		{"backward", KeyCode.S},
 		{"left", KeyCode.A},
 		{"right", KeyCode.D},
-		{"fire", KeyCode.Mouse0}
+		{"fire", KeyCode.Mouse0},
+        {"ultimate", KeyCode.LeftShift}
 	};
 
 }
