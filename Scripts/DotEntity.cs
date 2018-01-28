@@ -83,7 +83,7 @@ public class DotEntity : MonoBehaviour {
 	{
         timer = 0.0F;
         isMoving = false;
-        nextTime = 0;
+        nextTime = Random.value;
         velocity = Vector2.zero;
         force = Vector2.zero;
         friction = Vector2.zero;
