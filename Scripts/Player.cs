@@ -185,7 +185,7 @@ public class Player : MonoBehaviour {
                 {
                     GameManager.pickedUpItems.Add(GameManager.droppedItems[i]);
                     Item item = GameManager.droppedItems[i].GetComponent<Item>();
-                    item.pickedUp = true;
+                    //item.pickedUp = true;
                     GameManager.droppedItems.RemoveAt(i);
                 }
             }
