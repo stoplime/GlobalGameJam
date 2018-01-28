@@ -61,23 +61,25 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _CutoffXL: 0
+    - _CutoffXR: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Frequency: 0.09
+    - _Frequency: 0.02
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _InnerRadius: 0
-    - _MaxRadius: 0.55
+    - _MaxRadius: 0.817
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset: -0.39
+    - _Offset: 0.45
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Thickness: 0.125
+    - _Thickness: 0.195
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
