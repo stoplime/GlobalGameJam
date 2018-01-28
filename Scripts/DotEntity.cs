@@ -45,31 +45,35 @@ public class DotEntity : MonoBehaviour {
 		//	dot.transition*(distance-tooFar) , otherDot.transision*(distance-tooFar)}
 	}
 
+	public Material getMaterial(){
+		Renderer rend = GetComponent<Renderer>();
+		return rend.material;
+	}
+
 	public void applyColorMix(float dist, Wave otherWave){
 		Wave thisWave = GetComponentsInChildren<Wave>()[0];
 		Material thisMat = thisWave.getMaterial();
 		Material otherMat = otherWave.getMaterial();
-		Renderer rend = GetComponent<Renderer>();
-		Material thisDotMat = rend.material;
+		Material thisDotMat = getMaterial();
 		float colorLerp = (-dist/otherWave.getMaxWaveEffectDist()+1) * otherMat.GetFloat("_Frequency") * colorInfluence;
 		thisMat.color = Color.Lerp(thisMat.color, otherMat.color, colorLerp);
 		thisDotMat.color = Color.Lerp(thisDotMat.color, otherMat.color, colorLerp);
-		// print("color mixing");
 	}
 
 	public void checkCollision(){
 		for (int i = 0; i < GameManager.dots.Count; i++)
 		{
-			float dist = Help.getDist2D(transform.position, GameManager.dots[i].transform.position);
-			Wave wave = GameManager.dots[i].GetComponentsInChildren<Wave>()[0];
-			// print(GameManager.dots[i].transform.position);
-			// print(wave.getMaxWaveEffectDist());
-			if (wave != null && dist < wave.getMaxWaveEffectDist())
+			if (GameManager.dots[i] != null)
 			{
-				// apply collision based on distance
-				if (!isBeacon)
+				float dist = Help.getDist2D(transform.position, GameManager.dots[i].transform.position);
+				Wave wave = GameManager.dots[i].GetComponentsInChildren<Wave>()[0];
+				if (wave != null && dist < wave.getMaxWaveEffectDist())
 				{
-					applyColorMix(dist, wave);
+					// apply collision based on distance
+					if (!isBeacon)
+					{
+						applyColorMix(dist, wave);
+					}
 				}
 			}
 		}
