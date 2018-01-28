@@ -1,4 +1,4 @@
-﻿Shader "Custom/WaveRippleSq"
+Shader "Custom/WaveRippleSq"
 {
 	Properties
 	{
@@ -69,7 +69,7 @@
 				float ci = xs + ys;
 				clip((1 - ci) - (1 - _MaxRadius));
 				float timeFrac = frac(_Time.a / (1 / _Frequency));
-				clip(sin((2 * 3.1415926) / (_Thickness * sin(y/x)) * (ci - timeFrac)) - _Offset);
+				clip(sin((2 * 3.1415926) / (_Thickness * sin(3 * atan2(y, x))) * (ci - timeFrac)) - _Offset);
 				float4 color = { i.color * ((1 - ci) + 0.5), (1 - 2 * ci) };
 				float4 tex = tex2D(_Texture, i.uv);
 				tex.a = color.a;
