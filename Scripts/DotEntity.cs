@@ -108,9 +108,12 @@ public class DotEntity : MonoBehaviour {
 		if (isPlayer) {
 			Color trailColor = getMaterial().color;
 			TrailRenderer trail = GetComponent<TrailRenderer>();
-			trail.startColor = trailColor;
-			trailColor.a = 0.2f;
-			trail.endColor = trailColor;
+			if (trail != null)
+			{
+				trail.startColor = trailColor;
+				trailColor.a = 0.2f;
+				trail.endColor = trailColor;
+			}
 		}
 	}
 
