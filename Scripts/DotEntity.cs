@@ -57,7 +57,14 @@ public class DotEntity : MonoBehaviour {
 		Material thisDotMat = getMaterial();
 		float colorLerp = (-dist/otherWave.getMaxWaveEffectDist()+1) * otherMat.GetFloat("_Frequency") * colorInfluence;
 		thisMat.color = Color.Lerp(thisMat.color, otherMat.color, colorLerp);
-		thisDotMat.color = Color.Lerp(thisDotMat.color, otherMat.color, colorLerp);
+		Color dotColor = Color.Lerp(thisDotMat.color, otherMat.color, colorLerp);
+		thisDotMat.color = dotColor;
+		if (isPlayer) {
+			TrailRenderer trail = GetComponent<TrailRenderer>();
+			trail.startColor = dotColor;
+			dotColor.a = 0.2f;
+			trail.endColor = dotColor;
+		}
 	}
 
 	public void checkCollision(){
@@ -98,6 +105,13 @@ public class DotEntity : MonoBehaviour {
         friction = Vector2.zero;
         net = Vector2.zero;
         force = Random.insideUnitCircle;
+		if (isPlayer) {
+			Color trailColor = getMaterial().color;
+			TrailRenderer trail = GetComponent<TrailRenderer>();
+			trail.startColor = trailColor;
+			trailColor.a = 0.2f;
+			trail.endColor = trailColor;
+		}
 	}
 
 	/// <summary>
@@ -109,7 +123,7 @@ public class DotEntity : MonoBehaviour {
         {
             checkCollision();
 
-            if (!isPlayer)
+            if (!isPlayer && !isBeacon)
             {
                 timer += Time.deltaTime;
 
