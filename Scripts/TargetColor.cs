@@ -34,7 +34,7 @@ public class TargetColor : MonoBehaviour {
 			Color dotColor = transform.parent.GetComponent<DotEntity>().getMaterial().color;
 			dotColor.a = currentColor.a;
 			transform.parent.GetComponent<DotEntity>().getMaterial().color = dotColor;
-			print(transform.parent.GetComponent<DotEntity>().getMaterial().color);
+			// print(transform.parent.GetComponent<DotEntity>().getMaterial().color);
 			if (currentColor.a <= 0)
 			{
 				Destroy(transform.parent.gameObject);
