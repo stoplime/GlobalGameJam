@@ -6,12 +6,18 @@ public class DotEntity : MonoBehaviour {
 
 	public float colorInfluence = 0.2f;
 
+    private float timer;
+
+    private float nextTime;
+
 	private float repel;
 	private Vector3 color;
 	private string emot;
 	private float freq;
 	private float ampl;
 	private float noise;
+
+    private Vector2 force;
 
 	void getRepelStrength(){
 
@@ -63,7 +69,10 @@ public class DotEntity : MonoBehaviour {
 	/// </summary>
 	void Start()
 	{
+        timer = 0.0F;
+        force = Vector2.zero;
 		GameManager.dots = GameObject.FindGameObjectsWithTag("dots");
+        force = Random.insideUnitCircle;
 	}
 
 	/// <summary>
@@ -72,5 +81,12 @@ public class DotEntity : MonoBehaviour {
 	void Update()
 	{
 		checkCollision();
+        timer += Time.deltaTime;
+
+        if (timer >= nextTime)
+        {
+            force = Random.insideUnitCircle * 2;
+            force = Vector2.ClampMagnitude(force, .25F);
+        }
 	}
 }
