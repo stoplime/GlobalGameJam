@@ -27,8 +27,11 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// coll = GetComponent<Collider>();
+        // coll = GetComponent<Collider>();
         // coll.isTrigger = true;
+        
+        GameManager.player = gameObject;
+
         text.text = "test";
         ultimate = 0F;
 
