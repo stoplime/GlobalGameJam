@@ -27,9 +27,12 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// coll = GetComponent<Collider>();
+        // coll = GetComponent<Collider>();
         // coll.isTrigger = true;
-        text.text = "test";
+        
+        GameManager.player = gameObject;
+
+        // text.text = "test";
         ultimate = 0F;
 
 		vel = Vector2.zero;
@@ -62,7 +65,7 @@ public class Player : MonoBehaviour {
         else if (ultimate < 10F)
         {
             ultimate += Time.deltaTime;
-            text.text = ((int)ultimate).ToString();
+            // text.text = ((int)ultimate).ToString();
         }
 
         else if (Input.GetKeyUp(GameManager.keyProfile["ultimate"]))
@@ -124,6 +127,22 @@ public class Player : MonoBehaviour {
             frc.y -= FORCE;
 			//vel.y = -Time.deltaTime * speed;
 		}
+
+        if (Input.GetKeyDown(GameManager.keyProfile["fire"]))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.tag == "dots")
+                {
+                    if (GameManager.pickedUpItems.Count > 0)
+                    {
+                        
+                    }
+                }
+            }
+        }
 
         frc = Vector2.ClampMagnitude(frc, FORCE);
 	}
