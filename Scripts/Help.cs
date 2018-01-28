@@ -8,4 +8,11 @@ public static class Help{
 		float y = pos2.y-pos1.y;
 		return Mathf.Sqrt(x*x+y*y);
 	}
+
+	public static bool ColorThresh(Color sample, Color target, float threshold){
+		bool isRedGood = (sample.r >= target.r - threshold) && (sample.r <= target.r + threshold);
+		bool isGreenGood = (sample.g >= target.g - threshold) && (sample.g <= target.g + threshold);
+		bool isBlueGood = (sample.b >= target.b - threshold) && (sample.b <= target.b + threshold);
+		return isRedGood && isGreenGood && isBlueGood;
+	}
 }

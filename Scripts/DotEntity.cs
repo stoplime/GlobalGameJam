@@ -54,7 +54,7 @@ public class DotEntity : MonoBehaviour {
 		float colorLerp = (-dist/otherWave.getMaxWaveEffectDist()+1) * otherMat.GetFloat("_Frequency") * colorInfluence;
 		thisMat.color = Color.Lerp(thisMat.color, otherMat.color, colorLerp);
 		thisDotMat.color = Color.Lerp(thisDotMat.color, otherMat.color, colorLerp);
-		print("color mixing");
+		// print("color mixing");
 	}
 
 	public void checkCollision(){
