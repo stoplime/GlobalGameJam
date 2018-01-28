@@ -123,7 +123,7 @@ public class DotEntity : MonoBehaviour {
         {
             checkCollision();
 
-            if (!isPlayer)
+            if (!isPlayer && !isBeacon)
             {
                 timer += Time.deltaTime;
 
