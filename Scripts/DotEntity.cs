@@ -83,7 +83,7 @@ public class DotEntity : MonoBehaviour {
 	{
         timer = 0.0F;
         isMoving = false;
-        nextTime = Random.value * 2;
+        nextTime = 0;
         velocity = Vector2.zero;
         force = Vector2.zero;
         friction = Vector2.zero;
@@ -99,9 +99,10 @@ public class DotEntity : MonoBehaviour {
 	{
         if (!GameManager.IsPaused)
         {
+            checkCollision();
+
             if (!isPlayer)
             {
-                checkCollision();
                 timer += Time.deltaTime;
 
                 if (timer >= nextTime)
@@ -114,12 +115,16 @@ public class DotEntity : MonoBehaviour {
                         isMoving = true;
 
                         nextTime = Random.value * 0.5F;
+
+                        timer = 0;
                     }
                     else
                     {
                         force = Vector2.zero;
                         isMoving = false;
-                        nextTime = Random.value * 2;
+                        nextTime = Random.value * 5;
+
+                        timer = 0;
                     }
                 }
 
