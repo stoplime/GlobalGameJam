@@ -126,4 +126,14 @@ public class Player : MonoBehaviour {
 
         frc = Vector2.ClampMagnitude(frc, FORCE);
 	}
+
+    
+       void OnTriggerEnter2D(Collider2D other)
+    {
+            if (other.gameObject.CompareTag("Item"))
+        {
+            other.gameObject.SetActive(false);
+        }
+        
+    }
 }
