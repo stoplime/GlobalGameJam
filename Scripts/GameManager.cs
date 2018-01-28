@@ -7,7 +7,7 @@ public static class GameManager {
 
 	public static GameObject player;
 
-	public static GameObject[] dots;
+	public static List<GameObject> dots = new List<GameObject>();
 	// private static findDots = GameObject.FindGameObjectsWithTag("dots");
 	// for (int i = 0; i < findDots.Length; i++)
 	// {

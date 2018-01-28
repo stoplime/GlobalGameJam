@@ -19,18 +19,26 @@ public class TargetColor : MonoBehaviour {
 	void Start () {
 		rend = GetComponentInParent<Renderer>();
 		mat = rend.material;
+		target.a = 1f;
 		GetComponent<Renderer>().material.color = target;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		// print(isFading);
+		print(isFading);
 		if (isFading)
 		{
-			Color currentColor = mat.color;
-			currentColor.a -= 0.01f;
-			mat.color = currentColor;
-			// print("fading");
+			Color currentColor = GetComponent<Renderer>().material.color;
+			currentColor.a -= 0.5f * Time.deltaTime;
+			GetComponent<Renderer>().material.color = currentColor;
+			Color dotColor = GetComponentInParent<Renderer>().material.color;
+			dotColor.a = currentColor.a;
+			GetComponentInParent<Renderer>().material.color = dotColor;
+			print(GetComponentInParent<Renderer>().material.color);
+			if (currentColor.a <= 0)
+			{
+				Destroy(transform.parent.gameObject);
+			}
 		}
 		else
 		{
