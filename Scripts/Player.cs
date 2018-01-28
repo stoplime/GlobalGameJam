@@ -32,7 +32,7 @@ public class Player : MonoBehaviour {
         
         GameManager.player = gameObject;
 
-        text.text = "test";
+        // text.text = "test";
         ultimate = 0F;
 
 		vel = Vector2.zero;
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour {
         else if (ultimate < 10F)
         {
             ultimate += Time.deltaTime;
-            text.text = ((int)ultimate).ToString();
+            // text.text = ((int)ultimate).ToString();
         }
 
         else if (Input.GetKeyUp(GameManager.keyProfile["ultimate"]))
