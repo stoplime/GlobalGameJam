@@ -11,6 +11,9 @@ Shader "Custom/WaveRipple"
 		_InnerRadius ("Inner Radius", Range (0, 1)) = 0
 		_CutoffXL ("Horizontal Cutoff (Left)", Range(0, 1)) = 0
 		_CutoffXR ("Horizontal Cutoff (Right)", Range(0, 1)) = 1
+		_RippleSize ("Ripple Size", Range (0, 1)) = 0.2
+		_RippleNum ("Number of Ripples", Range (0, 10)) = 6
+		_RippleRotate ("Ripple Rotation Rate", Range (0, 10)) = 1
 		//_Direction("Cutoff Direction", Range(0, 2)) = 0
 	}
 	SubShader
@@ -54,6 +57,9 @@ Shader "Custom/WaveRipple"
 			float _InnerRadius;
 			float _CutoffXL;
 			float _CutoffXR;
+			float _RippleSize;
+			float _RippleNum;
+			float _RippleRotate;
 			//float _Direction;
 
             v2f vert (appdata_base v)
@@ -80,7 +86,8 @@ Shader "Custom/WaveRipple"
 				clip((1 - _InnerRadius) - (1 - ci));
 				clip((1 - ci) - (1 - _MaxRadius * 0.5));
 				float timeFrac = frac(_Time.a / (1 / _Frequency));
-				clip(sin((2 * 3.1415926) / _Thickness * (ci - timeFrac)) - _Offset);
+				float ui = ci + ci * _RippleSize * sin(_RippleNum * atan(y/x) + timeFrac * _RippleRotate);
+				clip(sin((2 * 3.1415926) / _Thickness * (ui - timeFrac)) - _Offset);
 				float4 color = { i.color, (_MaxRadius * 0.5 - ci + _InnerRadius) };
 				float4 tex = tex2D(_Texture, i.uv);
 				tex.a = color.a;
